@@ -1,0 +1,9 @@
+RESUMO DOS RESULTADOS
+==============================
+
+Random Forest: 1.0000
+Decision Tree: 0.9950
+KNN: 0.9750
+SVM: 0.9650
+Logistic Regression: 0.9650
+Naive Bayes: 0.9350

@@ -1,0 +1,100 @@
+version: '3.8'
+
+services:
+  # 1. Banco de Dados
+  db:
+    image: postgres:13
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: diabetes_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d diabetes_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # 2. MinIO (Storage)
+  minio:
+    image: minio/minio
+    container_name: minio_container
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+
+  # 3. Criador de Buckets (Ajustado para Windows: Linha única para não quebrar)
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: /bin/sh -c "/usr/bin/mc config host add myminio http://minio:9000 minioadmin minioadmin && /usr/bin/mc mb myminio/mlflow; /usr/bin/mc mb myminio/raw-data; exit 0"
+
+  # 4. MLFlow
+  mlflow:
+    build: ./mlflow
+    container_name: mlflow_container
+    command: mlflow server --backend-store-uri postgresql://user:password@db:5432/diabetes_db --default-artifact-root s3://mlflow/ --host 0.0.0.0
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+      minio:
+        condition: service_started
+    environment:
+      MLFLOW_S3_ENDPOINT_URL: http://minio:9000
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+
+  # 5. Jupyter Lab
+  jupyter:
+    build: ./jupyterlab
+    container_name: jupyter_container
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      MLFLOW_S3_ENDPOINT_URL: http://minio:9000
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+
+  # 6. FastAPI
+  fastapi:
+    build: ./fastapi
+    container_name: fastapi_container
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - minio
+    environment:
+      MINIO_ENDPOINT: http://minio:9000
+      DB_URI: postgresql://user:password@db:5432/diabetes_db
+
+  # 7. ThingsBoard
+  thingsboard:
+    image: thingsboard/tb-postgres
+    container_name: thingsboard_container
+    ports:
+      - "8080:8080"
+    environment:
+      TB_QUEUE_TYPE: in-memory
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  minio_data:

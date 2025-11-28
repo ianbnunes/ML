@@ -1,0 +1,11 @@
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+mlflow
+boto3
+psycopg2-binary
+sqlalchemy
+minio
+seaborn
