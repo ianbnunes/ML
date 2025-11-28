@@ -36,10 +36,11 @@ services:
   # 3. Criador de Buckets (Ajustado para Windows: Linha única para não quebrar)
   createbuckets:
     image: minio/mc
+    container_name: mc_helper
     depends_on:
       - minio
-    entrypoint: /bin/sh -c "/usr/bin/mc config host add myminio http://minio:9000 minioadmin minioadmin && /usr/bin/mc mb myminio/mlflow; /usr/bin/mc mb myminio/raw-data; exit 0"
-
+    entrypoint: /bin/sh -c "sleep 10; /usr/bin/mc alias set myminio http://minio:9000 minioadmin minioadmin; /usr/bin/mc mb --ignore-existing myminio/raw-diabetes-data; exit 0"
+ 
   # 4. MLFlow
   mlflow:
     build: ./mlflow
@@ -61,6 +62,7 @@ services:
   jupyter:
     build: ./jupyterlab
     container_name: jupyter_container
+    command: start-notebook.sh --NotebookApp.token='diabetes-jupyter'
     ports:
       - "8888:8888"
     volumes:

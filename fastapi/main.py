@@ -12,8 +12,8 @@ DB_URI = os.getenv("DB_URI", "postgresql://user:password@db:5432/diabetes_db")
 MINIO_ENDPOINT = os.getenv("MINIO_ENDPOINT", "http://minio:9000")
 AWS_ACCESS_KEY = "minioadmin"
 AWS_SECRET_KEY = "minioadmin"
-BUCKET_NAME = "raw-data"
-FILE_KEY = "diabetes_012_health_indicators_BRFSS2015.csv"
+BUCKET_NAME = "raw-diabetes-data"
+FILE_KEY = "Dataset of Diabetes .csv"
 
 @app.get("/")
 def home():
