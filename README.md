@@ -41,8 +41,7 @@ O projeto roda inteiramente sobre **Docker Compose**, integrando os seguintes se
 ├── mlflow/                  # Configuração do servidor MLFlow
 ├── notebooks/               # Notebooks de análise e scripts
 │   ├── analise_diabetes.ipynb   # Notebook principal (Reprodução e Melhorias)
-│   ├── simulador_iot.py         # Script de simulação de sensores
-│   └── outputs/                 # Gráficos e relatórios gerados
+└── reports/                 # Gráficos e relatórios gerados
 └── README.md                # Documentação do projeto
 ---
 ````
@@ -116,7 +115,7 @@ Nesta etapa, treinamos os modelos e geramos os relatórios de comparação.
 Para auditar a performance dos modelos treinados:
 
 1.  Acesse: [http://localhost:5000](https://www.google.com/search?q=http://localhost:5000)
-2.  Clique no experimento `Projeto_Diabetes_Clinico` na barra lateral.
+2.  Clique no experimento `Projeto_ML_Diabetes` na barra lateral.
 3.  Compare as métricas (Acurácia, F1-Score) entre a **Decision Tree** e o **Random Forest**.
 
 -----
@@ -128,5 +127,7 @@ Para encerrar a execução e liberar recursos da máquina:
 ```bash
 docker-compose down
 ```
+
+
 
 
