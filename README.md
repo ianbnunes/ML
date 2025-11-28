@@ -44,10 +44,9 @@ O projeto roda inteiramente sobre **Docker Compose**, integrando os seguintes se
 │   ├── simulador_iot.py         # Script de simulação de sensores
 │   └── outputs/                 # Gráficos e relatórios gerados
 └── README.md                # Documentação do projeto
-
 ---
+````
 
-````markdown
 ## Como Executar o Projeto
 
 Siga este guia passo a passo para levantar a infraestrutura, processar os dados e visualizar os resultados.
@@ -72,7 +71,6 @@ Aguarde alguns minutos. Certifique-se de que todos os contêineres estão com st
 ```bash
 docker ps
 ```
-
 -----
 
 ### Passo 2: Configuração do Data Lake (MinIO)
@@ -123,25 +121,6 @@ Para auditar a performance dos modelos treinados:
 
 -----
 
-### Passo 6: Dashboard em Tempo Real (ThingsBoard)
-
-Para simular a chegada de novos pacientes e visualizar o monitoramento:
-
-1.  Acesse: [http://localhost:8080](https://www.google.com/search?q=http://localhost:8080)
-      * **Login:** `tenant@thingsboard.org`
-      * **Senha:** `tenant`
-2.  Vá em **Devices** -\> Adicione um novo dispositivo (ex: "Monitor\_Hosp\_01").
-3.  Clique no dispositivo criado e copie o **Access Token**.
-4.  No seu editor de código (VS Code), abra o arquivo `notebooks/simulador_iot.py`.
-5.  Cole o token na variável `ACCESS_TOKEN`.
-6.  Execute o script de simulação:
-    ```bash
-    python notebooks/simulador_iot.py
-    ```
-7.  Volte ao ThingsBoard, entre na aba **Latest Telemetry** do dispositivo e veja os dados chegando em tempo real.
-
------
-
 ### Parando o Projeto
 
 Para encerrar a execução e liberar recursos da máquina:
@@ -149,3 +128,4 @@ Para encerrar a execução e liberar recursos da máquina:
 ```bash
 docker-compose down
 ```
+
