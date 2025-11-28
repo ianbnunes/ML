@@ -41,8 +41,7 @@ O projeto roda inteiramente sobre **Docker Compose**, integrando os seguintes se
 ├── mlflow/                  # Configuração do servidor MLFlow
 ├── notebooks/               # Notebooks de análise e scripts
 │   ├── analise_diabetes.ipynb   # Notebook principal (Reprodução e Melhorias)
-│   ├── simulador_iot.py         # Script de simulação de sensores
-│   └── outputs/                 # Gráficos e relatórios gerados
+└── reports/                 # Gráficos e relatórios gerados
 └── README.md                # Documentação do projeto
 ---
 ````
@@ -128,5 +127,6 @@ Para encerrar a execução e liberar recursos da máquina:
 ```bash
 docker-compose down
 ```
+
 
 
