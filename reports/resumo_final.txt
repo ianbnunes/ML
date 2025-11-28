@@ -1,0 +1,20 @@
+==================================================
+RESUMO EXECUTIVO - PROJETO DIABETES
+==================================================
+
+Total de Modelos Avaliados: 6
+------------------------------
+RANKING DE PERFORMANCE (Acurácia):
+------------------------------
+
+🥇 Random Forest: 100.00% de acurácia
+🥈 Decision Tree: 99.50% de acurácia
+🥉 KNN: 97.50% de acurácia
+4. SVM: 96.50% de acurácia
+5. Logistic Regression: 96.50% de acurácia
+6. Naive Bayes: 93.50% de acurácia
+
+==================================================
+CONCLUSÃO AUTOMÁTICA:
+O modelo 'Random Forest' atingiu performance perfeita (100%).
+Isso indica forte correlação linear dos atributos clínicos (ex: HbA1c) com o alvo.

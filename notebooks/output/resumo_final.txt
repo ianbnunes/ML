@@ -1,8 +1,0 @@
-RANKING DOS MODELOS:
-
-Random Forest: 100.0%
-Decision Tree: 99.5%
-KNN: 97.5%
-SVM: 96.5%
-Log. Regression: 96.5%
-Naive Bayes: 93.5%
