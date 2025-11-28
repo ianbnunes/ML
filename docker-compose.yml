@@ -39,8 +39,15 @@ services:
     container_name: mc_helper
     depends_on:
       - minio
-    entrypoint: /bin/sh -c "sleep 10; /usr/bin/mc alias set myminio http://minio:9000 minioadmin minioadmin; /usr/bin/mc mb --ignore-existing myminio/raw-diabetes-data; exit 0"
- 
+    entrypoint:
+      /bin/sh -c "
+      sleep 10;
+      /usr/bin/mc alias set myminio http://minio:9000 minioadmin minioadmin;
+      /usr/bin/mc mb --ignore-existing myminio/raw-diabetes-data;
+      /usr/bin/mc mb --ignore-existing myminio/mlflow;
+      exit 0;
+      "
+
   # 4. MLFlow
   mlflow:
     build: ./mlflow
