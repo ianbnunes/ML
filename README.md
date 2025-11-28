@@ -80,7 +80,7 @@ Antes de ingerir os dados, precisamos colocar o arquivo CSV no nosso armazenamen
 1.  Acesse o Console do MinIO: [http://localhost:9001](https://www.google.com/search?q=http://localhost:9001)
       * **Usuário:** `minioadmin`
       * **Senha:** `minioadmin`
-2.  Navegue até o bucket **`raw-data`** (criado automaticamente).
+2.  Navegue até o bucket **`raw-diabetes-data`** (criado automaticamente).
 3.  Clique em **Upload** e envie o arquivo: `Dataset of Diabetes .csv`.
       * *Nota: Certifique-se de que o nome do arquivo corresponde ao esperado pela API.*
 
@@ -128,4 +128,5 @@ Para encerrar a execução e liberar recursos da máquina:
 ```bash
 docker-compose down
 ```
+
 
