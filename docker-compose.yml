@@ -93,7 +93,7 @@ services:
     image: thingsboard/tb-postgres
     container_name: thingsboard_container
     ports:
-      - "8080:8080"
+      - "8080:9090"
     environment:
       TB_QUEUE_TYPE: in-memory
       TB_DB_TYPE: postgres

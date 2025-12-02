@@ -1,13 +1,13 @@
-import pandas as pd
-import time
 import json
-import requests
-import random
 import os
+import random
+import time
+
+import pandas as pd
+import requests
 from sqlalchemy import create_engine
 
-
-ACCESS_TOKEN = "COLE_SEU_TOKEN_AQUI" 
+ACCESS_TOKEN = "odJ6Gkxmq0fcdoJVkAym"
 
 THINGSBOARD_HOST = os.getenv('TB_HOST', 'localhost')
 THINGSBOARD_PORT = os.getenv('TB_PORT', '8080')
@@ -55,7 +55,8 @@ try:
 
                 if response.status_code == 200:
                     status_icon = "ALERTA DIABETES" if risco == 1 else "SAUDÁVEL"
-                    print(f"Paciente {telemetria['id_paciente']} | HbA1c: {telemetria['hba1c']} | {status_icon}")
+                    print(
+                        f"Paciente {telemetria['id_paciente']} | HbA1c: {telemetria['hba1c']} | {status_icon}")
                 else:
                     print(f"Erro Thingsboard: {response.status_code}")
 
