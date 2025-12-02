@@ -96,8 +96,15 @@ services:
       - "8080:8080"
     environment:
       TB_QUEUE_TYPE: in-memory
+      TB_DB_TYPE: postgres
+      TB_POSTGRES_HOST: db
+      TB_POSTGRES_PORT: 5432
+      TB_POSTGRES_DB: diabetes_db
+      TB_POSTGRES_USERNAME: user
+      TB_POSTGRES_PASSWORD: password
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
 volumes:
   postgres_data:

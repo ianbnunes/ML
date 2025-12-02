@@ -7,7 +7,7 @@ O trabalho baseia-se na reprodução e melhoria de métodos de classificação, 
 ---
 
 ## 👥 Equipe
-* **Arthur Jatobá Lobo Suzuki** (@user_github)
+* **Arthur Jatobá Lobo Suzuki** (@Ajls@cesar.school)
 * **Gabriel Lima Siqueira** (@GabrielLimaSC)
 * **Gabriel Ferreira Ferraz** (@gabrielfferraz)
 * **Ian de Barros Nunes** (@ianbnunes)
@@ -39,8 +39,10 @@ O projeto roda inteiramente sobre **Docker Compose**, integrando os seguintes se
 ├── fastapi/                 # Código da API de Ingestão
 ├── jupyterlab/              # Configuração do ambiente Jupyter
 ├── mlflow/                  # Configuração do servidor MLFlow
+├── mlruns/                  # Logs do MLFlow
 ├── notebooks/               # Notebooks de análise e scripts
-│   ├── analise_diabetes.ipynb   # Notebook principal (Reprodução e Melhorias)
+│   ├── analise_diabetes.ipynb   # Notebook principal baseado no Paper     
+│   ├── analise_diabetes_completa_tradicional_mlp.ipynb   # Notebook comparativo com MLP
 └── reports/                 # Gráficos e relatórios gerados
 └── README.md                # Documentação do projeto
 ---
@@ -101,7 +103,7 @@ Agora vamos mover os dados do MinIO para o Banco de Dados PostgreSQL.
 Nesta etapa, treinamos os modelos e geramos os relatórios de comparação.
 
 1.  Acesse o JupyterLab: [http://localhost:8888](https://www.google.com/search?q=http://localhost:8888)
-      * *Se pedir token: Verifique os logs do terminal com `docker logs jupyter_container`.*
+      * Se pedir por uma senha/token, escreva: **`diabetes-jupyter`**
 2.  Abra a pasta `notebooks` e execute o arquivo principal (ex: `analise_diabetes.ipynb`).
 3.  Execute todas as células sequencialmente.
 4.  **Resultados:**
@@ -116,7 +118,7 @@ Para auditar a performance dos modelos treinados:
 
 1.  Acesse: [http://localhost:5000](https://www.google.com/search?q=http://localhost:5000)
 2.  Clique no experimento `Projeto_ML_Diabetes` na barra lateral.
-3.  Compare as métricas (Acurácia, F1-Score) entre a **Decision Tree** e o **Random Forest**.
+3.  Compare as métrica de Acurácia entre os modelos avaliados.
 
 -----
 
@@ -127,7 +129,3 @@ Para encerrar a execução e liberar recursos da máquina:
 ```bash
 docker-compose down
 ```
-
-
-
-
