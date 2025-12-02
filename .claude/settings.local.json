@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(docker logs:*)",
+      "Bash(dir C:UsersgabriDocumentsMLML)",
+      "Bash(docker exec:*)",
+      "Bash(winpty docker exec minio_container sh -c \"ls /data\")",
+      "Bash(curl:*)",
+      "Bash(docker restart:*)",
+      "Bash(docker-compose up:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

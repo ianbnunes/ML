@@ -12,7 +12,7 @@ MINIO_ENDPOINT = os.getenv("MINIO_ENDPOINT", "http://minio:9000")
 AWS_ACCESS_KEY = "minioadmin"
 AWS_SECRET_KEY = "minioadmin"
 BUCKET_NAME = "raw-diabetes-data"
-FILE_KEY = "Dataset of Diabetes .csv"
+FILE_KEY = "Dataset_of_Diabetes.csv"
 
 @app.get("/")
 def home():
