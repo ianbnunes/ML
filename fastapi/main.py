@@ -2,7 +2,6 @@ from fastapi import FastAPI, HTTPException
 import boto3
 import pandas as pd
 from sqlalchemy import create_engine
-import io
 import os
 
 app = FastAPI()
