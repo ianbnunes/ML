@@ -11,6 +11,7 @@ O trabalho baseia-se na reprodução e melhoria de métodos de classificação, 
 * **Gabriel Lima Siqueira** (@GabrielLimaSC)
 * **Gabriel Ferreira Ferraz** (@gabrielfferraz)
 * **Ian de Barros Nunes** (@ianbnunes)
+* * **João Antonio Sampaio Ferreira** (@jasf@cesar.school)
 * **Maria Augusta Barreto de Gois** (@maria-bg)
 
 **Instituição:** CESAR School  
@@ -122,10 +123,68 @@ Para auditar a performance dos modelos treinados:
 
 -----
 
+### Passo 6: Visualização de Dados no ThingsBoard
+
+O **ThingsBoard** é a interface de visualização em tempo real dos dados de diabetes simulados.
+Após levantar os contêineres, siga as etapas abaixo para fazer login e acessar o painel.
+
+
+
+ 1. Acesse o Painel Web
+
+Abra o navegador e vá para:
+👉 [http://localhost:8080](http://localhost:8080)
+
+
+
+ 2. Login Padrão (Admin)
+
+Use as credenciais padrão do ThingsBoard:
+
+* **Usuário:** `tenant@thingsboard.org`
+* **Senha:** `tenant`
+
+Após o login, o sistema solicitará a troca de senha (opcional para ambiente local).
+
+
+
+ 3. Explorando o Dashboard
+
+1. No menu lateral, clique em **Dashboards**.
+2. Localize o painel chamado **Diabetes Monitoring Dashboard** (criado automaticamente pela seed ou manualmente pelo grupo).
+3. Acesse-o para visualizar:
+
+   * Métricas simuladas em tempo real (por exemplo, glicemia, pressão, batimentos).
+   * Histórico de valores enviados pela API de simulação.
+   * Gráficos e widgets configurados no ThingsBoard.
+
+
+
+ 4. (Opcional) Enviando Dados Manualmente
+
+Se desejar testar o envio de dados simulados:
+
+1. Vá em **Devices → diabetes-simulator**.
+2. Copie o **Access Token** do dispositivo.
+3. Use-o com o script **simulador_iot.py**:
+
+```python
+ACCESS_TOKEN = "seu_token_de_acesso"
+
+```
+
+---
+
+ 5. Verificação
+
+* Retorne ao Dashboard e veja se as métricas foram atualizadas.
+* Caso não veja mudanças, atualize a página ou verifique se o contêiner `thingsboard` está ativo (`docker ps`).
+
 ### Parando o Projeto
 
 Para encerrar a execução e liberar recursos da máquina:
 
 ```bash
 docker-compose down
+
 ```
