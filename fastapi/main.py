@@ -16,7 +16,7 @@ FILE_KEY = "Dataset_of_Diabetes.csv"
 
 @app.get("/")
 def home():
-    return {"status": "API de Ingestão Online 🚀"}
+    return {"status": "API de Ingestão Online"}
 
 @app.post("/ingest")
 def run_ingestion():

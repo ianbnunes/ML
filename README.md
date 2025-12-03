@@ -7,8 +7,8 @@ O trabalho baseia-se na reprodução e melhoria de métodos de classificação, 
 ---
 
 ## 👥 Equipe
-* **Arthur Jatobá Lobo Suzuki** (@Ajls@cesar.school)
-* **Gabriel Lima Siqueira** (@GabrielLimaSC)
+* **Arthur Jatobá Lobo Suzuki** (@ajls@cesar.school)
+* **Gabriel Lima Siqueira** (@gabrielLimaSC)
 * **Gabriel Ferreira Ferraz** (@gabrielfferraz)
 * **Ian de Barros Nunes** (@ianbnunes)
 * **Maria Augusta Barreto de Gois** (@maria-bg)
@@ -78,7 +78,7 @@ docker ps
 
 Antes de ingerir os dados, precisamos colocar o arquivo CSV no nosso armazenamento de objetos.
 
-1.  Acesse o Console do MinIO: [http://localhost:9001](https://www.google.com/search?q=http://localhost:9001)
+1.  Acesse o Console do MinIO: [http://localhost:9001](http://localhost:9001)
       * **Usuário:** `minioadmin`
       * **Senha:** `minioadmin`
 2.  Navegue até o bucket **`raw-diabetes-data`** (criado automaticamente).
@@ -91,7 +91,7 @@ Antes de ingerir os dados, precisamos colocar o arquivo CSV no nosso armazenamen
 
 Agora vamos mover os dados do MinIO para o Banco de Dados PostgreSQL.
 
-1.  Acesse a documentação da API: [http://localhost:8000/docs](https://www.google.com/search?q=http://localhost:8000/docs)
+1.  Acesse a documentação da API: [http://localhost:8000/docs](http://localhost:8000/docs)
 2.  Localize o endpoint verde **POST /ingest**.
 3.  Clique em **Try it out** -\> **Execute**.
 4.  Aguarde a resposta `200 OK` confirmando a quantidade de linhas inseridas no banco.
@@ -102,7 +102,7 @@ Agora vamos mover os dados do MinIO para o Banco de Dados PostgreSQL.
 
 Nesta etapa, treinamos os modelos e geramos os relatórios de comparação.
 
-1.  Acesse o JupyterLab: [http://localhost:8888](https://www.google.com/search?q=http://localhost:8888)
+1.  Acesse o JupyterLab: [http://localhost:8888](http://localhost:8888)
       * Se pedir por uma senha/token, escreva: **`diabetes-jupyter`**
 2.  Abra a pasta `notebooks` e execute o arquivo principal (ex: `analise_diabetes.ipynb`).
 3.  Execute todas as células sequencialmente.
@@ -116,7 +116,7 @@ Nesta etapa, treinamos os modelos e geramos os relatórios de comparação.
 
 Para auditar a performance dos modelos treinados:
 
-1.  Acesse: [http://localhost:5000](https://www.google.com/search?q=http://localhost:5000)
+1.  Acesse: [http://localhost:5000](http://localhost:5000)
 2.  Clique no experimento `Projeto_ML_Diabetes` na barra lateral.
 3.  Compare as métrica de Acurácia entre os modelos avaliados.
 
