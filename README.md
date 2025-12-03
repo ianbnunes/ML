@@ -12,6 +12,7 @@ O trabalho baseia-se na reprodução e melhoria de métodos de classificação, 
 * **Gabriel Ferreira Ferraz** (@gabrielfferraz)
 * **Ian de Barros Nunes** (@ianbnunes)
 * **Maria Augusta Barreto de Gois** (@maria-bg)
+* **João Antonio Sampaio Ferreira** (jasf@cesar.school)
 
 **Instituição:** CESAR School  
 **Disciplina:** Aprendizado de Máquina - 2025.2  
@@ -128,4 +129,5 @@ Para encerrar a execução e liberar recursos da máquina:
 
 ```bash
 docker-compose down
+
 ```
