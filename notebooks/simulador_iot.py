@@ -17,7 +17,7 @@ DB_HOST = os.getenv('DB_HOST', 'localhost')
 DB_PORT = os.getenv('DB_PORT', '5432')
 DB_URI = f"postgresql+psycopg2://user:password@{DB_HOST}:{DB_PORT}/diabetes_db"
 
-print("🚑 Conectando ao Banco de Dados (Dataset Clínico)...")
+print("Conectando ao Banco de Dados (Dataset Clínico)...")
 
 try:
     engine = create_engine(DB_URI)

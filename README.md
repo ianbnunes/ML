@@ -7,8 +7,8 @@ O trabalho baseia-se na reprodução e melhoria de métodos de classificação, 
 ---
 
 ## 👥 Equipe
-* **Arthur Jatobá Lobo Suzuki** (@Ajls@cesar.school)
-* **Gabriel Lima Siqueira** (@GabrielLimaSC)
+* **Arthur Jatobá Lobo Suzuki** (@ajls@cesar.school)
+* **Gabriel Lima Siqueira** (@gabrielLimaSC)
 * **Gabriel Ferreira Ferraz** (@gabrielfferraz)
 * **Ian de Barros Nunes** (@ianbnunes)
 * **Maria Augusta Barreto de Gois** (@maria-bg)
