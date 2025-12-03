@@ -11,7 +11,7 @@ O trabalho baseia-se na reprodução e melhoria de métodos de classificação, 
 * **Gabriel Lima Siqueira** (@gabrielLimaSC)
 * **Gabriel Ferreira Ferraz** (@gabrielfferraz)
 * **Ian de Barros Nunes** (@ianbnunes)
-* * **João Antonio Sampaio Ferreira** (@jasf@cesar.school)
+* **João Antonio Sampaio Ferreira** (@jasf@cesar.school)
 * **Maria Augusta Barreto de Gois** (@maria-bg)
 
 **Instituição:** CESAR School  
@@ -172,13 +172,51 @@ Se desejar testar o envio de dados simulados:
 ACCESS_TOKEN = "seu_token_de_acesso"
 
 ```
+* Recomendação Importante: Faça Backup do Dashboard (Export JSON)
 
----
+Para evitar qualquer perda acidental durante apresentações ou execução do projeto, recomenda-se realizar periodicamente um backup do dashboard do ThingsBoard.
+
+Como o projeto depende do ambiente Docker, existe a possibilidade (rara, mas real) de corrompimento de volumes ou containers. Por isso, manter uma cópia externa garante segurança e recuperação rápida.
+
+* Como exportar o dashboard
+
+Acesse o ThingsBoard e abra a lista de Dashboards.
+
+Localize o dashboard principal do projeto (ex.: UTI Diabetes).
+
+Clique no ícone Exportar (ícone de download/seta).
+
+Um arquivo .json será baixado automaticamente (ex.: dashboard.json).
+
+* Onde armazenar
+
+Salve o arquivo em uma pasta dentro do seu projeto, por exemplo:
+
+thingsboard/dashboard.json
+
+
+ou na raiz do repositório:
+
+dashboard.json
+
+* Como restaurar
+
+Caso o ambiente Docker apresente algum problema:
+
+Suba uma nova instância do ThingsBoard.
+
+Vá em Dashboards → Importar.
+
+Selecione o arquivo .json exportado anteriormente.
+
+O dashboard completo será restaurado automaticamente em poucos segundos.
 
  5. Verificação
 
 * Retorne ao Dashboard e veja se as métricas foram atualizadas.
 * Caso não veja mudanças, atualize a página ou verifique se o contêiner `thingsboard` está ativo (`docker ps`).
+
+---
 
 ### Parando o Projeto
 
@@ -188,3 +226,4 @@ Para encerrar a execução e liberar recursos da máquina:
 docker-compose down
 
 ```
+
