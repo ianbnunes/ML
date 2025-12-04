@@ -2,7 +2,10 @@
 
 Este projeto implementa um pipeline completo de Engenharia de Dados e Machine Learning para a predição de diabetes, utilizando contêineres Docker para orquestrar ingestão, armazenamento, modelagem e visualização.
 
-O trabalho baseia-se na reprodução e melhoria de métodos de classificação, integrando ferramentas modernas como MLFlow, MinIO, PostgreSQL e ThingsBoard.
+O trabalho baseia-se na reprodução e melhoria de métodos de classificação do Paper escolhido: 
+* Comparative Effectiveness of Classification Algorithms in Predicting Diabetes (https://doi.org/10.1109/CICN63059.2024.10847398)
+  
+Integrando ferramentas modernas como MLFlow, MinIO, PostgreSQL e ThingsBoard.
 
 ---
 
@@ -45,6 +48,7 @@ O projeto roda inteiramente sobre **Docker Compose**, integrando os seguintes se
 │   ├── analise_diabetes.ipynb   # Notebook principal baseado no Paper     
 │   ├── analise_diabetes_completa_tradicional_mlp.ipynb   # Notebook comparativo com MLP
 └── reports/                 # Gráficos e relatórios gerados
+├── alerta_pacientes.json    # JSON do dashboard a ser criado no ThingsBoard
 └── README.md                # Documentação do projeto
 ---
 ````
@@ -83,7 +87,7 @@ Antes de ingerir os dados, precisamos colocar o arquivo CSV no nosso armazenamen
       * **Usuário:** `minioadmin`
       * **Senha:** `minioadmin`
 2.  Navegue até o bucket **`raw-diabetes-data`** (criado automaticamente).
-3.  Clique em **Upload** e envie o arquivo: `Dataset of Diabetes .csv`.
+3.  Clique em **Upload** e envie o arquivo: `Dataset_of_Diabetes.csv` disponibilizado.
       * *Nota: Certifique-se de que o nome do arquivo corresponde ao esperado pela API.*
 
 -----
@@ -105,11 +109,12 @@ Nesta etapa, treinamos os modelos e geramos os relatórios de comparação.
 
 1.  Acesse o JupyterLab: [http://localhost:8888](http://localhost:8888)
       * Se pedir por uma senha/token, escreva: **`diabetes-jupyter`**
-2.  Abra a pasta `notebooks` e execute o arquivo principal (ex: `analise_diabetes.ipynb`).
+2.  Abra a pasta `notebooks` e execute o arquivo principal (`analise_diabetes.ipynb`).
 3.  Execute todas as células sequencialmente.
 4.  **Resultados:**
       * Os gráficos e resumos serão salvos na pasta `notebooks/outputs`.
       * O rastreamento dos experimentos (métricas e modelos) será enviado ao **MLFlow**.
+5. Repita essas duas últimas etapas no arquivo  `analise_diabetes_completa_tradicional_mlp.ipynb` para obter os resultados incrementados.
 
 -----
 
@@ -120,6 +125,7 @@ Para auditar a performance dos modelos treinados:
 1.  Acesse: [http://localhost:5000](http://localhost:5000)
 2.  Clique no experimento `Projeto_ML_Diabetes` na barra lateral.
 3.  Compare as métrica de Acurácia entre os modelos avaliados.
+4.  Faça o mesmo ára 
 
 -----
 
@@ -130,92 +136,26 @@ Após levantar os contêineres, siga as etapas abaixo para fazer login e acessar
 
 
 
- 1. Acesse o Painel Web
-
-Abra o navegador e vá para:
-👉 [http://localhost:8080](http://localhost:8080)
-
-
-
- 2. Login Padrão (Admin)
-
-Use as credenciais padrão do ThingsBoard:
-
-* **Usuário:** `tenant@thingsboard.org`
-* **Senha:** `tenant`
-
-Após o login, o sistema solicitará a troca de senha (opcional para ambiente local).
-
-
-
- 3. Explorando o Dashboard
-
-1. No menu lateral, clique em **Dashboards**.
-2. Localize o painel chamado **Diabetes Monitoring Dashboard** (criado automaticamente pela seed ou manualmente pelo grupo).
-3. Acesse-o para visualizar:
-
-   * Métricas simuladas em tempo real (por exemplo, glicemia, pressão, batimentos).
+1.  Acesse: [http://localhost:8080](http://localhost:8080)
+2.  Realize o login padrão com as credenciais padrão do ThingsBoard:
+     * **Usuário:** `tenant@thingsboard.org`
+     * **Senha:** `tenant`
+3.  No menu lateral, clique em **Dashboards**. Em seguida clique em Importar.
+4.  Selecione o arquivo .json no diretório (**`alerta_pacientes.json`**).
+    O dashboard completo será restaurado automaticamente em poucos segundos.
+5. Por fim, acesse-o para visualizar:
+   * Métricas simuladas em tempo real (por exemplo, glicemia, ureia, creatinina).
    * Histórico de valores enviados pela API de simulação.
    * Gráficos e widgets configurados no ThingsBoard.
-
-
-
- 4. (Opcional) Enviando Dados Manualmente
-
-Se desejar testar o envio de dados simulados:
-
-1. Vá em **Devices → diabetes-simulator**.
-2. Copie o **Access Token** do dispositivo.
-3. Use-o com o script **simulador_iot.py**:
+  
+6. (Opcional) Se desejar testar o envio de dados simulados:
+* Vá em **Devices → diabetes-simulator**. Se ele não estiver disponível, crie um com o mesmo nome.
+* Copie o **Access Token** do dispositivo.
+* Use-o com o script **simulador_iot.py**:
 
 ```python
 ACCESS_TOKEN = "seu_token_de_acesso"
-
 ```
-* Recomendação Importante: Faça Backup do Dashboard (Export JSON)
-
-Para evitar qualquer perda acidental durante apresentações ou execução do projeto, recomenda-se realizar periodicamente um backup do dashboard do ThingsBoard.
-
-Como o projeto depende do ambiente Docker, existe a possibilidade (rara, mas real) de corrompimento de volumes ou containers. Por isso, manter uma cópia externa garante segurança e recuperação rápida.
-
-* Como exportar o dashboard
-
-Acesse o ThingsBoard e abra a lista de Dashboards.
-
-Localize o dashboard principal do projeto (ex.: UTI Diabetes).
-
-Clique no ícone Exportar (ícone de download/seta).
-
-Um arquivo .json será baixado automaticamente (ex.: dashboard.json).
-
-* Onde armazenar
-
-Salve o arquivo em uma pasta dentro do seu projeto, por exemplo:
-
-thingsboard/dashboard.json
-
-
-ou na raiz do repositório:
-
-dashboard.json
-
-* Como restaurar
-
-Caso o ambiente Docker apresente algum problema:
-
-Suba uma nova instância do ThingsBoard.
-
-Vá em Dashboards → Importar.
-
-Selecione o arquivo .json exportado anteriormente.
-
-O dashboard completo será restaurado automaticamente em poucos segundos.
-
- 5. Verificação
-
-* Retorne ao Dashboard e veja se as métricas foram atualizadas.
-* Caso não veja mudanças, atualize a página ou verifique se o contêiner `thingsboard` está ativo (`docker ps`).
-
 ---
 
 ### Parando o Projeto
@@ -226,4 +166,3 @@ Para encerrar a execução e liberar recursos da máquina:
 docker-compose down
 
 ```
-
