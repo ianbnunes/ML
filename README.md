@@ -156,6 +156,9 @@ Após levantar os contêineres, siga as etapas abaixo para fazer login e acessar
 ```python
 ACCESS_TOKEN = "seu_token_de_acesso"
 ```
+* Em seguida, no dashboard importado, procure pelo lápis de Edição do dashboard.
+* Clique nos lápis de edição de cada widget e na seção de **Dados** faça o seginte:
+  * Selecione o tipo: **`Dispositivo`** e em seguida selecione na categoria Dipositivo*: **`diabetes-simulator`** (o device que você criou)
 ---
 
 ### Parando o Projeto
@@ -166,3 +169,4 @@ Para encerrar a execução e liberar recursos da máquina:
 docker-compose down
 
 ```
+
